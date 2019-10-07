@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Brief_introduction &mdash; CPython_internals  documentation</title>
+  <title>Interpreter_vs_Compiler &mdash; CPython_internals  documentation</title>
   
 
   
@@ -35,8 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Compiling" href="Compiling.html" />
-    <link rel="prev" title="Welcome to CPython_internals’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Frame_object" href="Frame_object.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,16 +81,14 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Brief_introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#project-directory-overview">Project directory overview</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="Brief_introduction.html">Brief_introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Compiling.html">Compiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bytecode.html">Bytecode</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Interpreter.html">Interpreter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Python_object.html">Python_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Frame_object.html">Frame_object</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interpreter_vs_Compiler</a></li>
 </ul>
 
             
@@ -137,13 +134,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Brief_introduction</li>
+      <li>Interpreter_vs_Compiler</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/Brief_introduction.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Interpreter_vs_Compiler.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,22 +153,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="brief-introduction">
-<h1>Brief_introduction<a class="headerlink" href="#brief-introduction" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="project-directory-overview">
-<h2>Project directory overview<a class="headerlink" href="#project-directory-overview" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Doc: the manual</p></li>
-<li><p>Grammer: grammer is defined</p></li>
-<li><p>Include: the C headers</p></li>
-<li><p>Lib: the Python modules</p></li>
-<li><p>Modules: the C modules</p></li>
-<li><p>Objects: the builtin object(string, list, bool, tuple)</p></li>
-<li><p>Parser: grammer, lexer, parser, compiler</p></li>
-<li><p>Programs: the executable python program</p></li>
-<li><p>Python: the virtual machine</p></li>
-</ul>
-</div>
+  <div class="section" id="interpreter-vs-compiler">
+<h1>Interpreter_vs_Compiler<a class="headerlink" href="#interpreter-vs-compiler" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -182,10 +165,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Compiling.html" class="btn btn-neutral float-right" title="Compiling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to CPython_internals’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Frame_object.html" class="btn btn-neutral float-left" title="Frame_object" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
