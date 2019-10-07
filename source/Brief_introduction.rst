@@ -3,7 +3,7 @@ Brief_introduction
 ==================
 
 ***************************
-Prroject directory overview
+Project directory overview
 ***************************
 
 - Doc: the manual
