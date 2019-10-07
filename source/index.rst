@@ -17,6 +17,8 @@ Welcome to CPython_internals's documentation!
    Python_object
    Code_object
    Frame_object
+   Interpreter_vs_Compiler
+   Disadvantage
 
 
 
