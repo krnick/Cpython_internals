@@ -9,15 +9,15 @@ Project directory overview
 .. image:: image/overview.png
 
 
-- Doc: the manual
-- Grammer: grammer is defined
-- Include: the C headers
-- Lib: the Python modules
-- Modules: the C modules
-- Objects: the builtin object(string, list, bool, tuple)
-- Parser: grammer, lexer, parser, compiler
-- Programs: the executable python program
-- Python: the virtual machine
+- Doc: The manual
+- Grammer: Where Grammer is defined
+- Include: The C headers
+- Lib: The Python modules
+- Modules: The C modules
+- Objects: The builtin object(string, list, bool, tuple)
+- Parser: Grammer, lexer, parser, compiler
+- Programs: The executable python program
+- Python: The virtual machine
 
 Python includes a compiler, interpreter.However, the compilation doesn't do much work.
 After compilation, the source code would turn into bytecode,which is code object.
@@ -54,8 +54,5 @@ checking.
 
 
 
-
-LL_parser : https://en.wikipedia.org/wiki/LL_parser
-Grammar/Grammar
 
 Full Grammar specification: https://docs.python.org/3/reference/grammar.html

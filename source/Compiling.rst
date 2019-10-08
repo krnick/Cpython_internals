@@ -36,6 +36,7 @@ Compiling
     st = parser.suite(code)
     print(parser.st2list(st))
 
+`LL_parser <https://en.wikipedia.org/wiki/LL_parser>`_
 
 ******
 4. AST
