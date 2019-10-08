@@ -7,7 +7,7 @@ Compiling
 3. Symbol table
 4. Code object
 5. Flow control graph
-6. Code obejct optimization
+6. Code obejct optimization (`Peephole optimization <https://en.wikipedia.org/wiki/Peephole_optimization>`_)
 7. Result
 
 

@@ -2,7 +2,15 @@
 Python_object
 +++++++++++++++++++
 
+`PyObject Definitions <https://github.com/python/cpython/blob/f7d72e48fb235684e17668a1e5107e6b0dab7b80/Include/object.h#L104-L108>`_
 
+.. code-block:: c
+
+    typedef struct _object {
+        _PyObject_HEAD_EXTRA
+        Py_ssize_t ob_refcnt;
+        struct _typeobject *ob_type;
+    } PyObject;
 
 Everything in Python is an object. Objects in C are represented
 by contiguous memories and are using a large number of macro
