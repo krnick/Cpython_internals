@@ -40,19 +40,7 @@ checking.
     add(1,2)
     add("hello","world")
 
-.. image:: image/type_check.png
-
-
-
-
-
-
-
-
-
-
-
-
-
+>>> 3
+>>> helloworld
 
 Full Grammar specification: https://docs.python.org/3/reference/grammar.html
