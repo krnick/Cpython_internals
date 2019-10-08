@@ -1,12 +1,12 @@
-=======================
+==================
 Interpreter_vs_Compiler
-=======================
+==================
 
 The main difference between the compiler and the interpreter
 
 * The compiler translates the whole program, but the interpreter translates the program line by line.
-* The compiler is relatively faster than interpreter because the interpreter needs executed by non-native virtual envirnment.
-* In order to store object code, the compiler requires more memory than interpreter.
+* The compiler is relatively faster than the interpreter because the interpreter executes on a non-native virtual environment.
+* To store object code, the compiler requires more memory than the interpreter.
 * The compiler will display all errors at the same time, while the interpreter will display the error of each error line by line.
 
 Compiler
@@ -19,18 +19,18 @@ code is needed when executing. Therefore, the job of the compiler is to translat
 Interpreter
 -------------
 
-It reads the program first, translate it into the code
+It reads the program first, translates it into the code
 corresponding to the virtual machine, known as
 bytecode, so we do not know what the type
 is, only when running the program to know, this
-also lead to the so-called dynamic type checking,
+also, lead to the so-called dynamic type checking,
 further called dynamic language.
 
 
 Commonality
 ----------------
 
-Both the compiler and the interpreter will convert the original file into tokens, which will generate AST, and will also generate the intermediate code, but the compiler produces the **machine code**, the interpreter produces instruction set is to be executed for the virtual machine.
+Both the compiler and the interpreter will convert the original file into tokens, which will generate AST, and will also generate the intermediate code, but the compiler produces the **machine code**, the interpreter produces the instruction set is to be executed for the virtual machine.
 
 
 +--------------------------------------------------------+-------------------------------------------------------------------------------------------------------+--+
@@ -46,7 +46,7 @@ Both the compiler and the interpreter will convert the original file into tokens
 Example
 -----------
 
-* Java is compiled into a bytecode and then executed by the JVM.
+* Java is compiled into bytecode and then executed by the JVM.
 
 * C language is compiled into object code, and then becomes the executable file after the linker
 
