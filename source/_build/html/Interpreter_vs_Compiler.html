@@ -89,7 +89,13 @@
 <li class="toctree-l1"><a class="reference internal" href="Python_object.html">Python_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Frame_object.html">Frame_object</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Interpreter_vs_Compiler</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interpreter_vs_Compiler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#compiler">Compiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interpreter">Interpreter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commonality">Commonality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Disadvantage.html">Disadvantage</a></li>
 </ul>
 
@@ -157,6 +163,67 @@
             
   <div class="section" id="interpreter-vs-compiler">
 <h1>Interpreter_vs_Compiler<a class="headerlink" href="#interpreter-vs-compiler" title="Permalink to this headline">¶</a></h1>
+<p>The main difference between the compiler and the interpreter</p>
+<ul class="simple">
+<li><p>The compiler translates the whole program, but the interpreter translates the program line by line.</p></li>
+<li><p>The compiler is relatively faster than interpreter because the interpreter needs executed by non-native virtual envirnment.</p></li>
+<li><p>In order to store object code, the compiler requires more memory than interpreter.</p></li>
+<li><p>The compiler will display all errors at the same time, while the interpreter will display the error of each error line by line.</p></li>
+</ul>
+<div class="section" id="compiler">
+<h2>Compiler<a class="headerlink" href="#compiler" title="Permalink to this headline">¶</a></h2>
+<p>In short, the compiler compiles the code into a machine code that can be executed directly by the computer.
+It is usually called executable file, and the process will also do the type check, so no source
+code is needed when executing. Therefore, the job of the compiler is to translate, translate into a language that the computer can understand</p>
+</div>
+<div class="section" id="interpreter">
+<h2>Interpreter<a class="headerlink" href="#interpreter" title="Permalink to this headline">¶</a></h2>
+<p>It reads the program first, translate it into the code
+corresponding to the virtual machine, known as
+bytecode, so we do not know what the type
+is, only when running the program to know, this
+also lead to the so-called dynamic type checking,
+further called dynamic language.</p>
+</div>
+<div class="section" id="commonality">
+<h2>Commonality<a class="headerlink" href="#commonality" title="Permalink to this headline">¶</a></h2>
+<p>Both the compiler and the interpreter will convert the original file into tokens, which will generate AST, and will also generate the intermediate code, but the compiler produces the <strong>machine code</strong>, the interpreter produces instruction set is to be executed for the virtual machine.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 64%" />
+<col style="width: 1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Interpreter</p></th>
+<th class="head"><p>Compiler</p></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Line by line when executing</p></td>
+<td><p>The whole file scanning</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Overall time is longer</p></td>
+<td><p>It takes a lot of time to analyze the source code, but the overall execution time is relatively fast.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>No object code is generated, so it is memory efficient</p></td>
+<td><p>Generate object code that needs further links, so more memory is needed</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Java is compiled into a bytecode and then executed by the JVM.</p></li>
+<li><p>C language is compiled into object code, and then becomes the executable file after the linker</p></li>
+<li><p>Python is first converted to the bytecode and then executed via ceval.c. The interpreter directly executes the translated instruction set.</p></li>
+</ul>
+</div>
 </div>
 
 

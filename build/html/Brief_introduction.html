@@ -92,6 +92,8 @@
 <li class="toctree-l1"><a class="reference internal" href="Python_object.html">Python_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Frame_object.html">Frame_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Interpreter_vs_Compiler.html">Interpreter_vs_Compiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Disadvantage.html">Disadvantage</a></li>
 </ul>
 
             
@@ -160,17 +162,36 @@
 <h1>Brief_introduction<a class="headerlink" href="#brief-introduction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="project-directory-overview">
 <h2>Project directory overview<a class="headerlink" href="#project-directory-overview" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/overview.png" src="_images/overview.png" />
 <ul class="simple">
-<li><p>Doc: the manual</p></li>
-<li><p>Grammer: grammer is defined</p></li>
-<li><p>Include: the C headers</p></li>
-<li><p>Lib: the Python modules</p></li>
-<li><p>Modules: the C modules</p></li>
-<li><p>Objects: the builtin object(string, list, bool, tuple)</p></li>
-<li><p>Parser: grammer, lexer, parser, compiler</p></li>
-<li><p>Programs: the executable python program</p></li>
-<li><p>Python: the virtual machine</p></li>
+<li><p>Doc: The manual</p></li>
+<li><p>Grammer: Where Grammer is defined</p></li>
+<li><p>Include: The C headers</p></li>
+<li><p>Lib: The Python modules</p></li>
+<li><p>Modules: The C modules</p></li>
+<li><p>Objects: The builtin object(string, list, bool, tuple)</p></li>
+<li><p>Parser: Grammer, lexer, parser, compiler</p></li>
+<li><p>Programs: The executable python program</p></li>
+<li><p>Python: The virtual machine</p></li>
 </ul>
+<p>Python includes a compiler, interpreter.However, the compilation doesn’t do much work.
+After compilation, the source code would turn into bytecode,which is code object.</p>
+<p>Code object Compiled by CPython compiler can not be directly
+executed by the computer, it needs to be executed by the
+virtual machine, which is, interpreter.</p>
+<p>Also, the virtual machine is running on a stack, and each frame has its own data stack.
+If not, we don’t have the generator feature.</p>
+<p>The reason that Python is called a dynamic language is that
+many things are done when the program is running, such as type
+checking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">add</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/type_check.png" src="_images/type_check.png" />
+<p>Full Grammar specification: <a class="reference external" href="https://docs.python.org/3/reference/grammar.html">https://docs.python.org/3/reference/grammar.html</a></p>
 </div>
 </div>
 

@@ -157,6 +157,18 @@
             
   <div class="section" id="interpreter">
 <h1>Interpreter<a class="headerlink" href="#interpreter" title="Permalink to this headline">¶</a></h1>
+<p>CPython’s Virtual Machine</p>
+<p>Code evaluator : <a class="reference external" href="https://github.com/python/cpython/blob/master/Python/ceval.c">ceval.c</a></p>
+<p>The so-called Interpreter is just a huge <a class="reference external" href="https://github.com/python/cpython/blob/4d5f94b8cd20f804c7868c5395a15aa6032f874c/Python/ceval.c#L1183-L1184">loop</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/python/cpython/blob/master/Include/opcode.h">opcode.h</a></p></li>
+<li><p><a class="reference external" href="https://github.com/krnick/cpython/blob/master/Include/code.h">code.h</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python test.py
+</pre></div>
+</div>
+<p>Python needs to turn test.py into something that can be executed,
+so what is that? That is bytecode.</p>
 </div>
 
 

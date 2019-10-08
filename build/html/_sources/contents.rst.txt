@@ -18,6 +18,7 @@ Welcome to CPython_internals's documentation!
    Code_object
    Frame_object
    Interpreter_vs_Compiler
+   Disadvantage
 
 Indices and tables
 ==================
