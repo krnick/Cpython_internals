@@ -7,8 +7,7 @@ Bytecode definition: https://docs.python.org/3/library/dis.html
 
 ``dis`` module: https://docs.python.org/3/library/dis.html
 
-``dis`` could show us the disassembling bytecdoe from Python code, and the 
-bytecode will map to the `opcode.h <https://github.com/python/cpython/blob/master/Include/opcode.h>`_
+``dis`` module could show us the disassembling bytecode from Python code, and the bytecode will map to the `opcode.h <https://github.com/python/cpython/blob/master/Include/opcode.h>`_
 
 You can write some code like below:
 
