@@ -2,6 +2,13 @@
 Brief_introduction
 ==================
 
+Three steps to start CPython:
+
+1. Initialization: data structure, memory.
+2. Compiling:parse tree, ast, symbol tables, code object.
+3. Interpreting: execution of the generated code objects
+
+
 ***************************
 Project directory overview
 ***************************

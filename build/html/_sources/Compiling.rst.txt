@@ -60,3 +60,7 @@ Compiling
     tree = ast.parse("x=2+2")
     code_obejct = compile(tree,'test.py',mode='exec')
     dis.dis(code_obejct)
+
+.. code-block:: python
+
+    c = compile(open('test.py').read(), 'test.py', 'exec')

@@ -2,6 +2,13 @@
 Brief_introduction
 ==================
 
+Three steps to start CPython:
+
+1. Initialization: data structure, memory.
+2. Compiling:parse tree, ast, symbol tables, code object.
+3. Interpreting: execution of the generated code objects
+
+
 ***************************
 Project directory overview
 ***************************
@@ -40,19 +47,7 @@ checking.
     add(1,2)
     add("hello","world")
 
-.. image:: image/type_check.png
-
-
-
-
-
-
-
-
-
-
-
-
-
+>>> 3
+>>> helloworld
 
 Full Grammar specification: https://docs.python.org/3/reference/grammar.html
