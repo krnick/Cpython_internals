@@ -31,5 +31,7 @@ in the PyCodeObject in the memory. Once the Python
 program ends, the Python interpreter writes the PyCodeObject
 to the ``.pyc`` file.
 
+We can also execute directly through pyc file: ``python xxx.pyc``
+
 .. seealso:: `Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016 <https://www.youtube.com/watch?v=mxjv9KqzwjI&feature=youtu.be>`_
 
