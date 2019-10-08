@@ -22,5 +22,14 @@ typing ``python3 -m dis test.py``
 
 .. image:: image/dis_module.png
 
+
+pyc
+----
+
+When Python program runs, the bytecode is temporarily stored
+in the PyCodeObject in the memory. Once the Python
+program ends, the Python interpreter writes the PyCodeObject
+to the ``.pyc`` file.
+
 .. seealso:: `Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016 <https://www.youtube.com/watch?v=mxjv9KqzwjI&feature=youtu.be>`_
 

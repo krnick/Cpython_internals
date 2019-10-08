@@ -18,3 +18,6 @@ The so-called Interpreter is just a huge `loop <https://github.com/python/cpytho
 Python needs to turn test.py into something that can be executed,
 so what is that? That is bytecode.
 
+The way Python actually executes is that there are multiple cases
+in a loop, which correspond to different instructions.
+

@@ -84,7 +84,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Brief_introduction.html">Brief_introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Compiling.html">Compiling</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Bytecode</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Bytecode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyc">pyc</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Interpreter.html">Interpreter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Python_object.html">Python_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
@@ -169,9 +172,16 @@
 <p>save it to <strong>test.py</strong> and then back to the command line
 typing <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">dis</span> <span class="pre">test.py</span></code></p>
 <img alt="_images/dis_module.png" src="_images/dis_module.png" />
+<div class="section" id="pyc">
+<h2>pyc<a class="headerlink" href="#pyc" title="Permalink to this headline">¶</a></h2>
+<p>When Python program runs, the bytecode is temporarily stored
+in the PyCodeObject in the memory. Once the Python
+program ends, the Python interpreter writes the PyCodeObject
+to the <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=mxjv9KqzwjI&amp;feature=youtu.be">Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016</a></p>
+</div>
 </div>
 </div>
 
