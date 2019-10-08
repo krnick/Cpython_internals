@@ -86,7 +86,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Compiling.html">Compiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Bytecode.html">Bytecode</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Interpreter.html">Interpreter</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Python_object</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python_object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pytypeobject">PyTypeObject</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Frame_object.html">Frame_object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Interpreter_vs_Compiler.html">Interpreter_vs_Compiler</a></li>
@@ -185,6 +188,103 @@ again in the place where you need to use inheritance.</p>
 </div>
 <p>Each object has a reference count, if count reaches zero, it means no one
 is going to refer to it, then it will be garbage collected.</p>
+<div class="section" id="pytypeobject">
+<h2>PyTypeObject<a class="headerlink" href="#pytypeobject" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/python/cpython/blob/b2f94730d947f25b8507c5f76202e917683e76f7/Include/cpython/object.h">/Include/cpython/object.h</a></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_typeobject</span> <span class="p">{</span>
+    <span class="n">PyObject_VAR_HEAD</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">tp_name</span><span class="p">;</span> <span class="cm">/* For printing, in format &quot;&lt;module&gt;.&lt;name&gt;&quot; */</span>
+    <span class="n">Py_ssize_t</span> <span class="n">tp_basicsize</span><span class="p">,</span> <span class="n">tp_itemsize</span><span class="p">;</span> <span class="cm">/* For allocation */</span>
+
+    <span class="cm">/* Methods to implement standard operations */</span>
+
+    <span class="n">destructor</span> <span class="n">tp_dealloc</span><span class="p">;</span>
+    <span class="n">Py_ssize_t</span> <span class="n">tp_vectorcall_offset</span><span class="p">;</span>
+    <span class="n">getattrfunc</span> <span class="n">tp_getattr</span><span class="p">;</span>
+    <span class="n">setattrfunc</span> <span class="n">tp_setattr</span><span class="p">;</span>
+    <span class="n">PyAsyncMethods</span> <span class="o">*</span><span class="n">tp_as_async</span><span class="p">;</span> <span class="cm">/* formerly known as tp_compare (Python 2)</span>
+<span class="cm">                                    or tp_reserved (Python 3) */</span>
+    <span class="n">reprfunc</span> <span class="n">tp_repr</span><span class="p">;</span>
+
+    <span class="cm">/* Method suites for standard classes */</span>
+
+    <span class="n">PyNumberMethods</span> <span class="o">*</span><span class="n">tp_as_number</span><span class="p">;</span>
+    <span class="n">PySequenceMethods</span> <span class="o">*</span><span class="n">tp_as_sequence</span><span class="p">;</span>
+    <span class="n">PyMappingMethods</span> <span class="o">*</span><span class="n">tp_as_mapping</span><span class="p">;</span>
+
+    <span class="cm">/* More standard operations (here for binary compatibility) */</span>
+
+    <span class="n">hashfunc</span> <span class="n">tp_hash</span><span class="p">;</span>
+    <span class="n">ternaryfunc</span> <span class="n">tp_call</span><span class="p">;</span>
+    <span class="n">reprfunc</span> <span class="n">tp_str</span><span class="p">;</span>
+    <span class="n">getattrofunc</span> <span class="n">tp_getattro</span><span class="p">;</span>
+    <span class="n">setattrofunc</span> <span class="n">tp_setattro</span><span class="p">;</span>
+
+    <span class="cm">/* Functions to access object as input/output buffer */</span>
+    <span class="n">PyBufferProcs</span> <span class="o">*</span><span class="n">tp_as_buffer</span><span class="p">;</span>
+
+    <span class="cm">/* Flags to define presence of optional/expanded features */</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tp_flags</span><span class="p">;</span>
+
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">tp_doc</span><span class="p">;</span> <span class="cm">/* Documentation string */</span>
+
+    <span class="cm">/* Assigned meaning in release 2.0 */</span>
+    <span class="cm">/* call function for all accessible objects */</span>
+    <span class="n">traverseproc</span> <span class="n">tp_traverse</span><span class="p">;</span>
+
+    <span class="cm">/* delete references to contained objects */</span>
+    <span class="n">inquiry</span> <span class="n">tp_clear</span><span class="p">;</span>
+
+    <span class="cm">/* Assigned meaning in release 2.1 */</span>
+    <span class="cm">/* rich comparisons */</span>
+    <span class="n">richcmpfunc</span> <span class="n">tp_richcompare</span><span class="p">;</span>
+
+    <span class="cm">/* weak reference enabler */</span>
+    <span class="n">Py_ssize_t</span> <span class="n">tp_weaklistoffset</span><span class="p">;</span>
+
+    <span class="cm">/* Iterators */</span>
+    <span class="n">getiterfunc</span> <span class="n">tp_iter</span><span class="p">;</span>
+    <span class="n">iternextfunc</span> <span class="n">tp_iternext</span><span class="p">;</span>
+
+    <span class="cm">/* Attribute descriptor and subclassing stuff */</span>
+    <span class="k">struct</span> <span class="n">PyMethodDef</span> <span class="o">*</span><span class="n">tp_methods</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">PyMemberDef</span> <span class="o">*</span><span class="n">tp_members</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">PyGetSetDef</span> <span class="o">*</span><span class="n">tp_getset</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">_typeobject</span> <span class="o">*</span><span class="n">tp_base</span><span class="p">;</span>
+    <span class="n">PyObject</span> <span class="o">*</span><span class="n">tp_dict</span><span class="p">;</span>
+    <span class="n">descrgetfunc</span> <span class="n">tp_descr_get</span><span class="p">;</span>
+    <span class="n">descrsetfunc</span> <span class="n">tp_descr_set</span><span class="p">;</span>
+    <span class="n">Py_ssize_t</span> <span class="n">tp_dictoffset</span><span class="p">;</span>
+    <span class="n">initproc</span> <span class="n">tp_init</span><span class="p">;</span>
+    <span class="n">allocfunc</span> <span class="n">tp_alloc</span><span class="p">;</span>
+    <span class="n">newfunc</span> <span class="n">tp_new</span><span class="p">;</span>
+    <span class="n">freefunc</span> <span class="n">tp_free</span><span class="p">;</span> <span class="cm">/* Low-level free-memory routine */</span>
+    <span class="n">inquiry</span> <span class="n">tp_is_gc</span><span class="p">;</span> <span class="cm">/* For PyObject_IS_GC */</span>
+    <span class="n">PyObject</span> <span class="o">*</span><span class="n">tp_bases</span><span class="p">;</span>
+    <span class="n">PyObject</span> <span class="o">*</span><span class="n">tp_mro</span><span class="p">;</span> <span class="cm">/* method resolution order */</span>
+    <span class="n">PyObject</span> <span class="o">*</span><span class="n">tp_cache</span><span class="p">;</span>
+    <span class="n">PyObject</span> <span class="o">*</span><span class="n">tp_subclasses</span><span class="p">;</span>
+    <span class="n">PyObject</span> <span class="o">*</span><span class="n">tp_weaklist</span><span class="p">;</span>
+    <span class="n">destructor</span> <span class="n">tp_del</span><span class="p">;</span>
+
+    <span class="cm">/* Type attribute cache version tag. Added in version 2.6 */</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">tp_version_tag</span><span class="p">;</span>
+
+    <span class="n">destructor</span> <span class="n">tp_finalize</span><span class="p">;</span>
+    <span class="n">vectorcallfunc</span> <span class="n">tp_vectorcall</span><span class="p">;</span>
+
+<span class="cp">#ifdef COUNT_ALLOCS</span>
+    <span class="cm">/* these must be last and never explicitly initialized */</span>
+    <span class="n">Py_ssize_t</span> <span class="n">tp_allocs</span><span class="p">;</span>
+    <span class="n">Py_ssize_t</span> <span class="n">tp_frees</span><span class="p">;</span>
+    <span class="n">Py_ssize_t</span> <span class="n">tp_maxalloc</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">_typeobject</span> <span class="o">*</span><span class="n">tp_prev</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">_typeobject</span> <span class="o">*</span><span class="n">tp_next</span><span class="p">;</span>
+<span class="cp">#endif</span>
+<span class="p">}</span> <span class="n">PyTypeObject</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

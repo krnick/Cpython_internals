@@ -19,8 +19,8 @@ Project directory overview
 - Doc: The manual
 - Grammer: Where Grammer is defined
 - Include: The C headers
-- Lib: The Python modules
-- Modules: The C modules
+- Lib: Python portion of the python library
+- Modules: C portion of the python library
 - Objects: The builtin object(string, list, bool, tuple)
 - Parser: Grammer, lexer, parser, compiler
 - Programs: The executable python program
