@@ -179,6 +179,12 @@ in the PyCodeObject in the memory. Once the Python
 program ends, the Python interpreter writes the PyCodeObject
 to the <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file.</p>
 <p>We can also execute directly through pyc file: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">xxx.pyc</span></code></p>
+<p>When the Python program is executed for the second time, it will
+first look for the .pyc file in the current directory. If it is found, it will
+be loaded directly. If it is not found, repeat the above process.</p>
+<p>If Python find that Python’s source code has been modified, it will
+check the timestamp. In short, it is to determine the update time of
+the two files before deciding whether to compile or load directly.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=mxjv9KqzwjI&amp;feature=youtu.be">Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016</a></p>

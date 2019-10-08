@@ -33,5 +33,13 @@ to the ``.pyc`` file.
 
 We can also execute directly through pyc file: ``python xxx.pyc``
 
+When the Python program is executed for the second time, it will
+first look for the .pyc file in the current directory. If it is found, it will
+be loaded directly. If it is not found, repeat the above process.
+
+If Python find that Python's source code has been modified, it will
+check the timestamp. In short, it is to determine the update time of
+the two files before deciding whether to compile or load directly.
+
 .. seealso:: `Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016 <https://www.youtube.com/watch?v=mxjv9KqzwjI&feature=youtu.be>`_
 
