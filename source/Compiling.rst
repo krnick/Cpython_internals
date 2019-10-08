@@ -22,6 +22,15 @@ Compiling
 *************
 2. Tokenizing
 *************
+text to word
+
+* `tokenize.py <https://github.com/python/cpython/blob/8f59ee01be3d83d5513a9a3f654a237d77d80d9a/Lib/tokenize.py>`_
+* `token.py <https://github.com/python/cpython/blob/8f59ee01be3d83d5513a9a3f654a237d77d80d9a/Lib/token.py>`_
+
+``python3 -m tokenize test.py``
+
+.. image:: image/tokenize.png
+
 
 **********
 3. Parsing
