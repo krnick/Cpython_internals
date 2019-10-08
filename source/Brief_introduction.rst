@@ -6,6 +6,9 @@ Brief_introduction
 Project directory overview
 ***************************
 
+.. image:: image/overview.png
+
+
 - Doc: the manual
 - Grammer: grammer is defined
 - Include: the C headers
@@ -37,8 +40,7 @@ checking.
     add(1,2)
     add("hello","world")
 
-.. image:: YGgaxBP.png
-   :target: https://i.imgur.com/YGgaxBP.png
+.. image:: image/type_check.png
 
 
 
