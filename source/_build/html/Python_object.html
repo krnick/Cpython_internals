@@ -88,6 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="Interpreter.html">Interpreter</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python_object</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pytypeobject">PyTypeObject</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#protocols-in-c">Protocols in C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-counting">Reference Counting</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
@@ -284,6 +286,22 @@ is going to refer to it, then it will be garbage collected.</p>
 <span class="p">}</span> <span class="n">PyTypeObject</span><span class="p">;</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="protocols-in-c">
+<h2>Protocols in C<a class="headerlink" href="#protocols-in-c" title="Permalink to this headline">¶</a></h2>
+<p>Include/abstract.c
+Objects/abstract.c</p>
+<p>Objects
+Buffer  tp_as_buffer
+Number tp_as_number
+Mapping tp_as_mapping
+Sequence tp_as_sequence</p>
+</div>
+<div class="section" id="reference-counting">
+<h2>Reference Counting<a class="headerlink" href="#reference-counting" title="Permalink to this headline">¶</a></h2>
+<p>Py_INCREF(), Py_DECREF()
+Py_XINCREF(),Py_XDECREF(): does a null check
+Py_CLEAR()</p>
 </div>
 </div>
 
