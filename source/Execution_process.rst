@@ -1,6 +1,6 @@
-==================
+===================
 Python Execution Process
-==================
+===================
 
 Install the necessary debug tool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -25,7 +25,7 @@ Memory Management
 
 Py_Mem_Malloc() is based on malloc().
 
-All of python memory usage are based on ``malloc``, ``realloc``, ``free``
+All of the python memory usages are based on ``malloc``, ``realloc``, ``free``
 
 2. Modules/main.c (``break Py_Main``)
 
@@ -103,4 +103,4 @@ Issue 4753 opcode optimization.
 - Include/marshal.h
 
 The magic tag will change each time pyc file changes.
-Depends on time ``st_mtime`` of .pyc file
+Depends on time ``st_mtime`` of .pyc file.

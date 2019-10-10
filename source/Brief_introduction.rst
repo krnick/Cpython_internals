@@ -5,7 +5,7 @@ Brief_introduction
 Three steps to start CPython:
 
 1. Initialization: data structure, memory.
-2. Compiling:parse tree, ast, symbol tables, code object.
+2. Compiling: parse tree, ast, symbol tables, code object.
 3. Interpreting: execution of the generated code objects
 
 
@@ -17,7 +17,7 @@ Project directory overview
 
 
 - Doc: The manual
-- Grammer: Where Grammer is defined
+- Grammar: Where Grammer is defined
 - Include: The C headers
 - Lib: Python portion of the python library
 - Modules: C portion of the python library
@@ -26,12 +26,11 @@ Project directory overview
 - Programs: The executable python program
 - Python: The virtual machine
 
-Python includes a compiler, interpreter.However, the compilation doesn't do much work.
-After compilation, the source code would turn into bytecode,which is code object.
+Python includes a compiler, interpreter. However, the compilation doesn't do much work.
+After compilation, the source code would turn into the bytecode, which is the code object.
 
 Code object Compiled by CPython compiler can not be directly
-executed by the computer, it needs to be executed by the
-virtual machine, which is, interpreter.
+executed by the computer, it needs to be executed by the virtual machine, which is, interpreter.
 
 Also, the virtual machine is running on a stack, and each frame has its own data stack.
 If not, we don't have the generator feature.

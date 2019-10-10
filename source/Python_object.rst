@@ -1,6 +1,6 @@
-+++++++++++++++++++
+=============
 Python_object
-+++++++++++++++++++
+=============
 
 `PyObject Definitions <https://github.com/python/cpython/blob/f7d72e48fb235684e17668a1e5107e6b0dab7b80/Include/object.h#L104-L108>`_
 
