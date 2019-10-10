@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Debugging &mdash; CPython_internals  documentation</title>
+  <title>Python execution process &mdash; CPython_internals  documentation</title>
   
 
   
@@ -134,7 +134,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Debugging</li>
+      <li>Python execution process</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -153,10 +153,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="debugging">
-<h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="python-execution-process">
+<h1>Python execution process<a class="headerlink" href="#python-execution-process" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-the-necessary-debug-tool">
+<h2>Install the necessary debug tool<a class="headerlink" href="#install-the-necessary-debug-tool" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install gdb python3.5-dbg
-
 $ gdb python3
 </pre></div>
 </div>
@@ -166,30 +167,95 @@ $ gdb python3
 <ul class="simple">
 <li><p>copy argv</p></li>
 <li><p>sets locale</p></li>
-<li><p>calls Py_Main</p></li>
+<li><p>calls Py_Main()</p></li>
 </ul>
-<p>Memory Management</p>
+<div class="section" id="memory-management">
+<h3>Memory Management<a class="headerlink" href="#memory-management" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>PyMem_ (Include/pymem.h, Objects/object.c)</p></li>
 <li><p>PyObject_memory</p></li>
 </ul>
-<p>Py_Mem_Malloc(), based on malloc()</p>
-<p>Just based on <code class="docutils literal notranslate"><span class="pre">malloc</span></code>, <code class="docutils literal notranslate"><span class="pre">realloc</span></code>, <code class="docutils literal notranslate"><span class="pre">free</span></code></p>
+<p>Py_Mem_Malloc() is based on malloc().</p>
+<p>All of python memory usage are based on <code class="docutils literal notranslate"><span class="pre">malloc</span></code>, <code class="docutils literal notranslate"><span class="pre">realloc</span></code>, <code class="docutils literal notranslate"><span class="pre">free</span></code></p>
 <ol class="arabic simple" start="2">
 <li><p>Modules/main.c (<code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">Py_Main</span></code>)</p></li>
 </ol>
-<p>_PyOS_Getopt
-Py_GETENV
-stdio
-Py_Initialize: like bootstrapping, initialize all internal modules
-run script / -m module / -c command</p>
+<ul class="simple">
+<li><p>_PyOS_Getopt</p></li>
+<li><p>Py_GETENV</p></li>
+<li><p>stdio</p></li>
+<li><p>Py_Initialize: like bootstrapping, initialize all internal modules (Python/pythonrun.c)</p></li>
+<li><p>run script / -m module / -c command</p></li>
+</ul>
 <ol class="arabic simple" start="3">
 <li><p>Objects/object.c (<code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">_PyObject_New</span></code>)</p></li>
 </ol>
-<p>before next step, you need to run <code class="docutils literal notranslate"><span class="pre">clear</span> <span class="pre">_PyObject_New</span></code></p>
-<p>PyObject: Include/object.h, Objects/object.c</p>
-<p>Protocol in C</p>
-<p>Include/abstract.c, Objects/abstract.c</p>
+<ul class="simple">
+<li><p>Include/object.h</p></li>
+<li><p>Objects/object.c</p></li>
+</ul>
+<p>Before next step, you need to run <code class="docutils literal notranslate"><span class="pre">clear</span> <span class="pre">_PyObject_New</span></code></p>
+</div>
+<div class="section" id="protocols-in-c">
+<h3>Protocols in C<a class="headerlink" href="#protocols-in-c" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Include/abstract.c</p></li>
+<li><p>Objects/abstract.c</p></li>
+</ul>
+<ul class="simple">
+<li><p>Objects</p></li>
+<li><p>Buffer  tp_as_buffer</p></li>
+<li><p>Number tp_as_number</p></li>
+<li><p>Mapping tp_as_mapping</p></li>
+<li><p>Sequence tp_as_sequence</p></li>
+</ul>
+</div>
+<div class="section" id="reference-counting">
+<h3>Reference Counting<a class="headerlink" href="#reference-counting" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Py_INCREF()</p></li>
+<li><p>Py_DECREF()</p></li>
+</ul>
+<p>Does a null check:</p>
+<ul class="simple">
+<li><p>Py_XINCREF()</p></li>
+<li><p>Py_XDECREF():</p></li>
+<li><p>Py_CLEAR()</p></li>
+</ul>
+</div>
+<div class="section" id="pyobject-memory">
+<h3>PyObject_memory<a class="headerlink" href="#pyobject-memory" title="Permalink to this headline">¶</a></h3>
+<p>Include/objimpl.h
+Objects/obmalloc.c</p>
+<p>PyObject_ small block allocator</p>
+<p>struct arena_object -&gt; Link List -&gt; 256k address</p>
+<p>4k block -&gt; struct pool_header</p>
+<ul class="simple">
+<li><p>Double-free problem</p></li>
+<li><p>Memory leak</p></li>
+</ul>
+</div>
+<div class="section" id="pyeval-evalframeex">
+<h3>PyEval_EvalFrameEx<a class="headerlink" href="#pyeval-evalframeex" title="Permalink to this headline">¶</a></h3>
+<p>Main execution function. The big eval loop with a big switch.</p>
+<ul class="simple">
+<li><p>Python/ceval.c</p></li>
+<li><p>stack-based</p></li>
+<li><p>It has register</p></li>
+<li><p>It has opcode</p></li>
+</ul>
+<p>Issue 4753 opcode optimization.</p>
+</div>
+<div class="section" id="pyc">
+<h3>.pyc<a class="headerlink" href="#pyc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Python/marshal.c module: serialization the python code</p></li>
+<li><p>Include/marshal.h</p></li>
+</ul>
+<p>The magic tag will change each time pyc file changes.
+Depends on time <code class="docutils literal notranslate"><span class="pre">st_mtime</span></code> of .pyc file</p>
+</div>
+</div>
 </div>
 
 

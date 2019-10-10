@@ -134,22 +134,3 @@ PyTypeObject
 
 
 
-Protocols in C
------------------
-
-Include/abstract.c
-Objects/abstract.c
-
-Objects
-Buffer  tp_as_buffer
-Number tp_as_number
-Mapping tp_as_mapping
-Sequence tp_as_sequence
-
-
-Reference Counting
-------------------------
-
-Py_INCREF(), Py_DECREF()
-Py_XINCREF(),Py_XDECREF(): does a null check 
-Py_CLEAR() 
