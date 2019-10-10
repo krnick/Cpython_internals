@@ -11,13 +11,14 @@ Welcome to CPython_internals's documentation!
    :caption: Contents:
 
    Brief_introduction
+   Interpreter_vs_Compiler
    Compiling
    Bytecode
    Interpreter
    Python_object
    Code_object
    Frame_object
-   Interpreter_vs_Compiler
+   Execution_process
    Disadvantage
 
 

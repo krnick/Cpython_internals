@@ -9,9 +9,9 @@ Three steps to start CPython:
 3. Interpreting: execution of the generated code objects
 
 
-***************************
+**********************
 Project directory overview
-***************************
+**********************
 
 .. image:: image/overview.png
 
