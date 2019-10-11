@@ -22,8 +22,8 @@ Welcome to CPython_internals's documentation!
    Disadvantage
 
 This documentation is based on all of these links.
-I can't realize the knowledge of CPython internals
-without those.
+I can't summarize all the knowledge of CPython internals
+without those great materials.
 
 .. csv-table:: **Reference**
    :header: "Title", "Author"
@@ -33,6 +33,7 @@ without those.
     "`CPython internals <https://www.youtube.com/watch?v=LhadeL7_EIU>`_", "Philip Guo"
     "`Exploring our Python Interpreter <https://www.youtube.com/watch?v=R0lDKw0FQSI>`_", "Stephane Wirtel"
     "`How CPython's Compiler Works <https://www.youtube.com/watch?v=R31NRWgoIWM>`_", "Brett Cannon"
+    "`Bytes in the Machine: Inside the CPython interpreter <https://www.youtube.com/watch?v=HVUTjQzESeo>`_", "Allison Kaptur"
 
 
 Indices and tables
