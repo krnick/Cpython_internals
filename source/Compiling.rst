@@ -11,7 +11,7 @@ Compiling
 7. Result
 
 *******************
-Lexer
+1. Lexer
 *******************
 Take the source code into each word.
 
