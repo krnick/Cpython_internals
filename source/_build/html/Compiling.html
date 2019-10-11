@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Compiling &mdash; CPython_internals  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bytecode" href="Bytecode.html" />
+    <link rel="prev" title="Interpreter_vs_Compiler" href="Interpreter_vs_Compiler.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CPython_internals
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Brief_introduction.html">Brief_introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Interpreter_vs_Compiler.html">Interpreter_vs_Compiler</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compiling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#decoding-lexer">1. Decoding &amp; Lexer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tokenizing">2. Tokenizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing">3. Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ast">4. AST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiler">5. Compiler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Bytecode.html">Bytecode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Interpreter.html">Interpreter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python_object.html">Python_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Frame_object.html">Frame_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Execution_process.html">Python Execution Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Disadvantage.html">Disadvantage</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CPython_internals</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Compiling</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Compiling.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="compiling">
+<h1>Compiling<a class="headerlink" href="#compiling" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Python code -&gt; Parse tree</p></li>
+<li><p>Parse tree -&gt; AST</p></li>
+<li><p>Symbol table</p></li>
+<li><p>Code object</p></li>
+<li><p>Flow control graph</p></li>
+<li><p>Code object optimization (<a class="reference external" href="https://en.wikipedia.org/wiki/Peephole_optimization">Peephole optimization</a>)</p></li>
+<li><p>Result</p></li>
+</ol>
+<div class="section" id="decoding-lexer">
+<h2>1. Decoding &amp; Lexer<a class="headerlink" href="#decoding-lexer" title="Permalink to this headline">¶</a></h2>
+<p>byte to text</p>
+<ul class="simple">
+<li><p>Parser/tokenizer.c -&gt; PyTokenizer_FromString</p></li>
+<li><p>Parser/parsetok.c -&gt; parsetok</p></li>
+<li><p>Lib/tokenize.py</p></li>
+</ul>
+</div>
+<div class="section" id="tokenizing">
+<h2>2. Tokenizing<a class="headerlink" href="#tokenizing" title="Permalink to this headline">¶</a></h2>
+<p>text to word</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/python/cpython/blob/8f59ee01be3d83d5513a9a3f654a237d77d80d9a/Lib/tokenize.py">tokenize.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/python/cpython/blob/8f59ee01be3d83d5513a9a3f654a237d77d80d9a/Lib/token.py">token.py</a></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">tokenize</span> <span class="pre">test.py</span></code></p>
+<img alt="_images/tokenize.png" src="_images/tokenize.png" />
+</div>
+<div class="section" id="parsing">
+<h2>3. Parsing<a class="headerlink" href="#parsing" title="Permalink to this headline">¶</a></h2>
+<p>word to sentence structure</p>
+<ul class="simple">
+<li><p>Python/pythonrun.c -&gt; PyParser_ASTFromStringObject</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">parser</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;x = 2 + 2&quot;</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">suite</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">st2list</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
+<span class="go">[257, [269, [270, [271, [272, [274, [305, [309, [310, [311, [312, [315, [316, [317, [318, [319, [320, [321, [322, [323, [324, [1, &#39;x&#39;]]]]]]]]]]]]]]]]], [22, &#39;=&#39;], [274, [305, [309, [310, [311, [312, [315, [316, [317, [318, [319, [320, [321, [322, [323, [324, [2, &#39;2&#39;]]]]]], [14, &#39;+&#39;], [320, [321, [322, [323, [324, [2, &#39;2&#39;]]]]]]]]]]]]]]]]]]], [4, &#39;&#39;]]], [4, &#39;&#39;], [0, &#39;&#39;]]</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/LL_parser">LL_parser</a></p>
+</div>
+<div class="section" id="ast">
+<h2>4. AST<a class="headerlink" href="#ast" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dis</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;x=2+2&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">tree</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>AST example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/AST.png" src="_images/AST.png" />
+<p>Generated by Python AST Visualizer: <a class="reference external" href="https://vpyast.appspot.com/">https://vpyast.appspot.com/</a></p>
+</div>
+<div class="section" id="compiler">
+<h2>5. Compiler<a class="headerlink" href="#compiler" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/python/cpython/blob/master/Python/compile.c">Python/compile.c</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dis</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;x=2+2&quot;</span><span class="p">)</span>
+<span class="n">code_obejct</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span><span class="s1">&#39;test.py&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;exec&#39;</span><span class="p">)</span>
+<span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">code_obejct</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.py&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s1">&#39;test.py&#39;</span><span class="p">,</span> <span class="s1">&#39;exec&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=R31NRWgoIWM">How CPython’s Compiler Works - Brett Cannon</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Bytecode.html" class="btn btn-neutral float-right" title="Bytecode" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Interpreter_vs_Compiler.html" class="btn btn-neutral float-left" title="Interpreter_vs_Compiler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, JunWei Song
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

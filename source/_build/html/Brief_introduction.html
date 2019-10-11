@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Brief_introduction &mdash; CPython_internals  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Interpreter_vs_Compiler" href="Interpreter_vs_Compiler.html" />
+    <link rel="prev" title="Welcome to CPython_internals’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CPython_internals
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Brief_introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-directory-overview">Project directory overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Interpreter_vs_Compiler.html">Interpreter_vs_Compiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Compiling.html">Compiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bytecode.html">Bytecode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Interpreter.html">Interpreter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python_object.html">Python_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code_object.html">Code_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Frame_object.html">Frame_object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Execution_process.html">Python Execution Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Disadvantage.html">Disadvantage</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CPython_internals</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Brief_introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Brief_introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="brief-introduction">
+<h1>Brief_introduction<a class="headerlink" href="#brief-introduction" title="Permalink to this headline">¶</a></h1>
+<p>Three steps to start CPython:</p>
+<ol class="arabic simple">
+<li><p>Initialization: data structure, memory.</p></li>
+<li><p>Compiling: parse tree, ast, symbol tables, code object.</p></li>
+<li><p>Interpreting: execution of the generated code objects</p></li>
+</ol>
+<div class="section" id="project-directory-overview">
+<h2>Project directory overview<a class="headerlink" href="#project-directory-overview" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/overview.png" src="_images/overview.png" />
+<ul class="simple">
+<li><p>Doc: The manual</p></li>
+<li><p>Grammar: Where Grammer is defined</p></li>
+<li><p>Include: The C headers</p></li>
+<li><p>Lib: Python portion of the python library</p></li>
+<li><p>Modules: C portion of the python library</p></li>
+<li><p>Objects: The builtin object(string, list, bool, tuple)</p></li>
+<li><p>Parser: Grammer, lexer, parser, compiler</p></li>
+<li><p>Programs: The executable python program</p></li>
+<li><p>Python: The virtual machine</p></li>
+</ul>
+<p>Python includes a compiler, interpreter. However, the compilation doesn’t do much work.
+After compilation, the source code would turn into the bytecode, which is the code object.</p>
+<p>Code object Compiled by CPython compiler can not be directly
+executed by the computer, it needs to be executed by the virtual machine, which is, interpreter.</p>
+<p>Also, the virtual machine is running on a stack, and each frame has its own data stack.
+If not, we don’t have the generator feature.</p>
+<p>The reason that Python is called a dynamic language is that
+many things are done when the program is running, such as type
+checking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">add</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">helloworld</span>
+</pre></div>
+</div>
+<p>Full Grammar specification: <a class="reference external" href="https://docs.python.org/3/reference/grammar.html">https://docs.python.org/3/reference/grammar.html</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Interpreter_vs_Compiler.html" class="btn btn-neutral float-right" title="Interpreter_vs_Compiler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to CPython_internals’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, JunWei Song
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
