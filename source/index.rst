@@ -34,6 +34,7 @@ without those great materials.
     "`Exploring our Python Interpreter <https://www.youtube.com/watch?v=R0lDKw0FQSI>`_", "Stephane Wirtel"
     "`How CPython's Compiler Works <https://www.youtube.com/watch?v=R31NRWgoIWM>`_", "Brett Cannon"
     "`Bytes in the Machine: Inside the CPython interpreter <https://www.youtube.com/watch?v=HVUTjQzESeo>`_", "Allison Kaptur"
+    "`So you want to write an interpreter? <https://www.youtube.com/watch?v=LCslqgM48D4>`_", "Alex Gaynor"
 
 
 Indices and tables

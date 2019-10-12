@@ -4,6 +4,8 @@ Bytecode
 
 Bytecode definition: https://docs.python.org/3/library/dis.html
 
+stack based
+
 
 ``dis`` module: https://docs.python.org/3/library/dis.html
 
@@ -25,6 +27,9 @@ typing ``python3 -m dis test.py``
 
 pyc
 ----
+
+pyc is sort of bytecode that putting on disk,and
+a sequence of instructions for machine to run.
 
 When Python program runs, the bytecode is temporarily stored
 in the PyCodeObject in the memory. Once the Python

@@ -162,6 +162,7 @@
   <div class="section" id="bytecode">
 <h1>Bytecode<a class="headerlink" href="#bytecode" title="Permalink to this headline">¶</a></h1>
 <p>Bytecode definition: <a class="reference external" href="https://docs.python.org/3/library/dis.html">https://docs.python.org/3/library/dis.html</a></p>
+<p>stack based</p>
 <p><code class="docutils literal notranslate"><span class="pre">dis</span></code> module: <a class="reference external" href="https://docs.python.org/3/library/dis.html">https://docs.python.org/3/library/dis.html</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">dis</span></code> module could show us the disassembling bytecode from Python code, and the bytecode will map to the <a class="reference external" href="https://github.com/python/cpython/blob/master/Include/opcode.h">opcode.h</a></p>
 <p>You can write some code like below:</p>
@@ -175,6 +176,8 @@ typing <code class="docutils literal notranslate"><span class="pre">python3</spa
 <img alt="_images/dis_module.png" src="_images/dis_module.png" />
 <div class="section" id="pyc">
 <h2>pyc<a class="headerlink" href="#pyc" title="Permalink to this headline">¶</a></h2>
+<p>pyc is sort of bytecode that putting on disk,and
+a sequence of instructions for machine to run.</p>
 <p>When Python program runs, the bytecode is temporarily stored
 in the PyCodeObject in the memory. Once the Python
 program ends, the Python interpreter writes the PyCodeObject
