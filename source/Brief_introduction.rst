@@ -48,5 +48,3 @@ checking.
 
 >>> 3
 >>> helloworld
-
-Full Grammar specification: https://docs.python.org/3/reference/grammar.html
