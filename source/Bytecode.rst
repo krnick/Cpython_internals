@@ -46,5 +46,9 @@ If Python finds that Python's source code has been modified, it will
 check the timestamp. In short, it is to determine the update time of
 the two files before deciding whether to compile or load directly.
 
+`marshal.c <https://github.com/python/cpython/blob/master/Python/marshal.c>`_ : Write Python objects to files and read them back
+
+Each data type is mapping to a function to write them into pyc file like ``w_string``, ``w_object``
+
 .. seealso:: `Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016 <https://www.youtube.com/watch?v=mxjv9KqzwjI&feature=youtu.be>`_
 
