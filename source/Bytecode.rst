@@ -48,7 +48,10 @@ the two files before deciding whether to compile or load directly.
 
 `marshal.c <https://github.com/python/cpython/blob/master/Python/marshal.c>`_ : Write Python objects to files and read them back
 
-Each data type is mapping to a function to write them into pyc file like ``w_string``, ``w_object``
+Each data type is mapping to a function to write them into pyc file like ``w_string``, ``w_object``.
+When these python data types are written to the pyc file, all data structures will
+disappear, so you must rely on such as function  ``W_TYPE (TYPE_LIST, p);`` to write the
+type into file to recover
 
 .. seealso:: `Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016 <https://www.youtube.com/watch?v=mxjv9KqzwjI&feature=youtu.be>`_
 
