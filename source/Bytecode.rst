@@ -51,7 +51,11 @@ the two files before deciding whether to compile or load directly.
 Each data type is mapping to a function to write them into pyc file like ``w_string``, ``w_object``.
 When these python data types are written to the pyc file, all data structures will
 disappear, so you must rely on such as function  ``W_TYPE (TYPE_LIST, p);`` to write the
-type into file to recover
+type into file to recover.
+
+In any case, there are only two forms for making pyc file, one for numeric and one for string.
+
+A python source file will eventually become a PyCodeObject, and the inside classes or functions will be compiled to a code block, which will also be compiled into a PyCodeObject and stored in the first PyCodeObject->co_const.
 
 .. seealso:: `Scott Sanderson, Joe Jevnik - Playing with Python Bytecode - PyCon 2016 <https://www.youtube.com/watch?v=mxjv9KqzwjI&feature=youtu.be>`_
 
